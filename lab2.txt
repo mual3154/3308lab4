@@ -1,0 +1,122 @@
+Muntadher AlZayer
+
+Step 2:
+diff fruitsOld.txt fruitsNew.txt 
+Cranberry was removed
+Jackfruit was added
+Nectarine was removed
+Prickly Pear was removed
+
+> is a line that was added to the second file i.e. fruitsNew.txt
+< is a line that was removed from the first file i.e. fruitsOld.txt
+
+-c gives us the changes made in context with more information on the line and the file
+
+Step 3:
+wc testPasswd.txt
+15 lines
+692 number of characters
+
+Step 4:
+cut -f 1 -d ':' testPasswd.txt
+root
+daemon
+sys
+games
+mail
+www-data
+backup
+nobody
+syslog
+whoopsie
+user
+sshd
+ntp
+mysql
+vboxadd
+
+cut -f 2,4 -d ' ' grades.txt
+LN HW1
+Slaven 1
+Eustathios 1
+Saša 0
+Gerard 1
+Babur 0
+Marin 0
+Marko 1
+
+
+Step 5:
+cut -f 4 -d ':' testPasswd.txt | sort | uniq > step5.txt
+0
+1
+1000
+1337
+2
+3
+5
+99
+999
+
+cut -f 1 -d ':' testPasswd.txt | grep ^[mws] > step52.txt
+sys
+mail
+www-data
+syslog
+whoopsie
+sshd
+mysql
+
+
+Step 6:
+sed 's/[a-z]//g'  leetSpeak.txt > step6.txt
+0 4 34 4 053 70 473 7 0 4'7 43 17 1
+
+sed 's/[0-9]//g'  leetSpeak.txt > step6.txt
+yu cn ld  hr  wr bu yu cn' mk  drnk
+
+sed 's/[0-9]/_/g'  leetSpeak.txt > step6.txt
+y_u c_n l__d _ h_r__ __ w___r bu_ y_u c_n'_ m_k_ __ dr_nk
+
+
+sed 's/0/o/g' leetSpeak.txt | sed 's/4/a/g' | sed 's/3/e/g' | sed 's/5/s/g' | sed 's/7/t/g' | sed 's/1/i/g'
+you can lead a horse to water but you can't make it drink
+
+we can create a shell script
+
+Step 7:
+awk '{ print $1,$2; sum = 0; for (col = 3; col <=NF; col++) sum += $col; sum = sum/5; print sum*100; }' grades.txt
+
+FN LN
+0
+Ryan Slaven
+80
+Jephthah Eustathios
+40
+Andreas Saša
+60
+Godofredo Gerard
+100
+Edwin Babur
+80
+Ahmad Marin
+0
+Jett Marko
+80
+
+awk 'BEGIN{sum = 0; per = 0;} { for (col = 3; col <=NF; col++) {sum += $col;}} END{sum = (sum/5)*100; sum = sum/(NF-1); print sum;}' grades.txt 
+73.3333
+
+Step 8:
+grep -c  "[0-9]..-...-...." regex_practice_data.txt
+770
+
+grep -c  "303-...-...." regex_practice_data.txt
+407
+
+grep -c  "[a-z]*@[a-z]*.[a-z].." regex_practice_data.txt
+17252
+
+grep -c  "[a-z]*@[a-z]*.gov" regex_practice_data.txt
+53
+
